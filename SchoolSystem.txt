@@ -1,0 +1,107 @@
+package 幼儿园管理系统;
+import java.util.ArrayList;
+
+import java.util.Scanner;
+interface ISignUp{
+    public boolean addStudent (int stuType);
+	public IParams parse() ;
+    
+}
+
+interface IParams {
+    public int getBig();
+    public int getMedium();
+    public int getSmall();
+    public ArrayList<Integer> getPlanSignUp();}
+
+public  class SchoolSystem implements ISignup,IParams {
+	int big;
+	int medium;
+	int small;
+SchoolSystem(int big,int medium,int small){//初始化幼儿园大中小班人数
+	this.big=big;
+	this.medium=medium;
+	this.small=small;
+}
+public int getBig() {
+	Scanner i = new Scanner(System.in); 
+	int n=i.nextInt();
+	return n;
+	
+}
+public int getMedium() {
+	Scanner i = new Scanner(System.in); 
+	int n=i.nextInt();
+	return n;
+	
+}
+public int getSmall() {
+	 Scanner i = new Scanner(System.in); 
+		int n=i.nextInt();
+		return n;
+		
+}
+
+public ArrayList<Integer> getPlanSignUp (){
+	ArrayList<Integer> list=new ArrayList<>();
+	Scanner in=new Scanner(System.in);
+	int num=in.nextInt();
+		list.add(in.nextInt());
+	return list;
+}
+
+public boolean addStudent (Integer stuType) {
+	int i=Integer.valueOf(stuType);
+	ArrayList<Integer> list=new ArrayList<>();
+	switch(i) {
+	case 1:if(big==0) 
+		return false;
+	else {big--;
+	list.add(stuType);
+	}break;
+	case 2:if(medium==0)
+	return false;
+	else {medium--;
+	list.add(stuType);
+	}break;
+	case 3:if(small==0)
+		return false;
+	else {small--;
+	list.add(stuType);
+	}break;
+	}
+	return false;
+}
+
+public static IParams parse() {
+System.out.println("SchoolSystem schoolSystem = new SchoolSystem (1, 1, 0); // 初始化有1个大班名额，1个中班名额，0个小班名额");
+System.out.println("schoolSystem. addStudent (1); // 返回 true ，因为有 1 个剩余的大班名额");
+System.out.println("schoolSystem. addStudent (2); // 返回 true ，因为有 1 个剩余的中班名额");
+System.out.println("schoolSystem. addStudent (3); // 返回 false ，因为没有剩余的小班名额");
+System.out.println("schoolSystem. addStudent (1); // 返回 false ，因为没有剩余的大班名额，唯一1个大班名额已经被占据了");
+return null;
+}
+
+private void print() {
+		this.getPlanSignUp();		
+	}
+
+
+	
+	public static void main(String[] args) throws Exception {
+		IParams params = ISignUp.parse();
+		SchoolSystem sc = new SchoolSystem (params.getBig(), params.getMedium(),params.getSmall());
+		ArrayList<Integer> plan = sc.getPlanSignUp ();
+    for (int i = 0; i < plan.size(); i++) {
+        sc. addStudent (plan.get(i));
+    }
+    sc.print();
+		sc.addStudent(1);
+		sc.addStudent(2);
+		sc.addStudent(3);	
+	}
+	
+}
+
+
+
