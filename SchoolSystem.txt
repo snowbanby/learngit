@@ -18,12 +18,12 @@ public  class SchoolSystem implements ISignup,IParams {
 	int big;
 	int medium;
 	int small;
-SchoolSystem(int big,int medium,int small){//初始化幼儿园大中小班人数
+SchoolSystem(int big,int medium,int small){//初始化幼儿园大中小班学位数
 	this.big=big;
 	this.medium=medium;
 	this.small=small;
 }
-public int getBig() {
+public int getBig() {//返回大中小班的学位数
 	Scanner i = new Scanner(System.in); 
 	int n=i.nextInt();
 	return n;
